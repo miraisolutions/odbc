@@ -884,7 +884,7 @@ public:
             NANODBC_THROW_DATABASE_ERROR(env_, SQL_HANDLE_ENV);
 
         NANODBC_CALL_RC(
-            SQLSetConnectAttr, rc, conn_, SQL_LOGIN_TIMEOUT, (SQLPOINTER)(std::intptr_t)timeout, 0);
+            SQLSetConnectAttr, rc, conn_, SQL_ATTR_LOGIN_TIMEOUT, (SQLPOINTER)(std::intptr_t)timeout, 0);
         if (!success(rc))
             NANODBC_THROW_DATABASE_ERROR(conn_, SQL_HANDLE_DBC);
 
@@ -926,7 +926,7 @@ public:
             NANODBC_THROW_DATABASE_ERROR(env_, SQL_HANDLE_ENV);
 
         NANODBC_CALL_RC(
-            SQLSetConnectAttr, rc, conn_, SQL_LOGIN_TIMEOUT, (SQLPOINTER)(std::intptr_t)timeout, 0);
+            SQLSetConnectAttr, rc, conn_, SQL_ATTR_LOGIN_TIMEOUT, (SQLPOINTER)(std::intptr_t)timeout, 0);
         if (!success(rc))
             NANODBC_THROW_DATABASE_ERROR(conn_, SQL_HANDLE_DBC);
 
