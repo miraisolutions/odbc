@@ -926,8 +926,12 @@ public:
         if (!success(rc))
             NANODBC_THROW_DATABASE_ERROR(env_, SQL_HANDLE_ENV);
 
-        //NANODBC_CALL_RC(SQLSetConnectAttr, rc, conn_, SQL_ATTR_LOGIN_TIMEOUT, (SQLPOINTER)(std::intptr_t)timeout, 0);
-        NANODBC_CALL_RC(SQLSetConnectAttr, rc, conn_, SQL_ATTR_LOGIN_TIMEOUT, (SQLPOINTER)5, 0);
+        NANODBC_CALL_RC(SQLSetConnectAttr, rc, conn_, SQL_ATTR_LOGIN_TIMEOUT, (SQLPOINTER)(std::intptr_t)timeout, 0);
+        //NANODBC_CALL_RC(SQLSetConnectAttr, rc, conn_, SQL_ATTR_LOGIN_TIMEOUT, (SQLPOINTER)5, 0);
+        if (!success(rc))
+            NANODBC_THROW_DATABASE_ERROR(conn_, SQL_HANDLE_DBC);
+
+        NANODBC_CALL_RC(SQLSetConnectAttr, rc, conn_, SQL_ATTR_CONNECTION_TIMEOUT, (SQLPOINTER)5, 0);
         if (!success(rc))
             NANODBC_THROW_DATABASE_ERROR(conn_, SQL_HANDLE_DBC);
 
