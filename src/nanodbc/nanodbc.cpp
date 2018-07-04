@@ -925,8 +925,8 @@ public:
         if (!success(rc))
             NANODBC_THROW_DATABASE_ERROR(env_, SQL_HANDLE_ENV);
 
-        NANODBC_CALL_RC(
-            SQLSetConnectAttr, rc, conn_, SQL_ATTR_LOGIN_TIMEOUT, (SQLPOINTER)(std::intptr_t)timeout, 0);
+        //NANODBC_CALL_RC(SQLSetConnectAttr, rc, conn_, SQL_ATTR_LOGIN_TIMEOUT, (SQLPOINTER)(std::intptr_t)timeout, 0);
+        NANODBC_CALL_RC(SQLSetConnectAttr, rc, conn_, SQL_LOGIN_TIMEOUT, (SQLPOINTER)5, 0);
         if (!success(rc))
             NANODBC_THROW_DATABASE_ERROR(conn_, SQL_HANDLE_DBC);
 
@@ -935,6 +935,8 @@ public:
             enable_async(event_handle);
 #endif
 
+        std::cout << "one\n";
+        
         NANODBC_CALL_RC(
             NANODBC_FUNC(SQLDriverConnect),
             rc,
@@ -949,6 +951,8 @@ public:
         if (!success(rc) && (event_handle == nullptr || rc != SQL_STILL_EXECUTING))
             NANODBC_THROW_DATABASE_ERROR(conn_, SQL_HANDLE_DBC);
 
+        std::cout << "two\n";
+        
         connected_ = success(rc);
 
         return rc;
