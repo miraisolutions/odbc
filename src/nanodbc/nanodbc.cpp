@@ -162,8 +162,9 @@ typedef wide_string_type::value_type wide_char_t;
 // By making all calls to ODBC functions through this macro, we can easily get
 // runtime debugging information of which ODBC functions are being called,
 // in what order, and with what parameters by defining NANODBC_ODBC_API_DEBUG.
-#ifdef NANODBC_ODBC_API_DEBUG
 #include <iostream>
+#ifdef NANODBC_ODBC_API_DEBUG
+//#include <iostream>
 #define NANODBC_CALL_RC(FUNC, RC, ...)                                                             \
     do                                                                                             \
     {                                                                                              \
