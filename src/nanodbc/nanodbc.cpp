@@ -940,7 +940,7 @@ public:
             enable_async(event_handle);
 #endif
 
-        std::cout << "one\n";
+        //std::cout << "one\n";
         
         NANODBC_CALL_RC(
             NANODBC_FUNC(SQLDriverConnect),
@@ -956,7 +956,7 @@ public:
         if (!success(rc) && (event_handle == nullptr || rc != SQL_STILL_EXECUTING))
             NANODBC_THROW_DATABASE_ERROR(conn_, SQL_HANDLE_DBC);
 
-        std::cout << "two\n";
+        //std::cout << "two\n";
         
         connected_ = success(rc);
 
